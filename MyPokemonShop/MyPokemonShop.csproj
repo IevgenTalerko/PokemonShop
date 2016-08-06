@@ -157,6 +157,7 @@
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\js\bootstrap.js" />
     <Content Include="scripts\js\bootstrap.min.js" />
+    <Content Include="scripts\ActivitiesPager.js" />
     <Content Include="scripts\MyPokemonShop.js" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -14,19 +14,25 @@
         <title>Order</title>
     </head>
     <body>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
         <script src="~/Scripts/js/bootstrap.min.js"></script>
+        <script src="~/Scripts/ActivitiesPager.js"></script>
 
         <h2 class="text-center">Actions</h2>
 
-        <table class="table table-bordered table-hover table-condensed" id="ActivitiesList">
-            <tr>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Info
-                </th>
-            </tr>
+        <table class="table table-bordered table-hover table-condensed" >
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Info
+                    </th>
+                </tr>
+            </thead>
             @FillTable(Model)
         </table>
         <div class="col-md-12 text-center">
@@ -39,8 +45,9 @@
 
 @helper FillTable(MyPokemonShop.Models.ListModel model)
 {
-    foreach (var item in model.List)
-    {
+    <tbody id="ActivitiesList">
+        @foreach (var item in model.List)
+        {
         <tr>
             <td>
                 @item.Date
@@ -49,5 +56,6 @@
                 @item.Name заказал покемона уже в @item.Count раз
             </td>
         </tr>
-    }
+        }
+    </tbody>
 }
