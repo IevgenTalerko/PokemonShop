@@ -1,0 +1,53 @@
+﻿@model MyPokemonShop.Models.ListModel
+
+    @{
+        Layout = null;
+    }
+
+    <!DOCTYPE HTML>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/Scripts/css/bootstrap.min.css" rel="stylesheet">
+
+        <title>Order</title>
+    </head>
+    <body>
+        <script src="~/Scripts/js/bootstrap.min.js"></script>
+
+        <h2 class="text-center">Actions</h2>
+
+        <table class="table table-bordered table-hover table-condensed" id="ActivitiesList">
+            <tr>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Info
+                </th>
+            </tr>
+            @FillTable(Model)
+        </table>
+        <div class="col-md-12 text-center">
+            <ul class="pagination pagination-lg pager" id="myPager"></ul>
+        </div>
+
+    </body>
+</html>
+
+
+@helper FillTable(MyPokemonShop.Models.ListModel model)
+{
+    foreach (var item in model.List)
+    {
+        <tr>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @item.Name заказал покемона уже в @item.Count раз
+            </td>
+        </tr>
+    }
+}

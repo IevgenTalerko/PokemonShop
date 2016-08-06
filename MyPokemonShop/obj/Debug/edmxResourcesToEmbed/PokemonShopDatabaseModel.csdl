@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="PokemonShopDatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="PokemonShopDatabaseModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CustomerSet" EntityType="PokemonShopDatabaseModel.Customer" />
+    <EntitySet Name="OrderSet" EntityType="PokemonShopDatabaseModel.Order" />
+    <AssociationSet Name="CustomerOrder" Association="PokemonShopDatabaseModel.CustomerOrder">
+      <End Role="Customer" EntitySet="CustomerSet" />
+      <End Role="Order" EntitySet="OrderSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Phone" Type="String" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="PokemonShopDatabaseModel.CustomerOrder" FromRole="Customer" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="Date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="PokemonShopDatabaseModel.CustomerOrder" FromRole="Order" ToRole="Customer" />
+  </EntityType>
+  <Association Name="CustomerOrder">
+    <End Type="PokemonShopDatabaseModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="PokemonShopDatabaseModel.Order" Role="Order" Multiplicity="*" />
+  </Association>
+</Schema>
