@@ -28,7 +28,7 @@ namespace MyPokemonShop.Models
             using (var context = new PokemonShopDatabaseModelContainer())
             {
                 //1 вариант
-                //List = context.CustomerSet.Join(context.OrderSet, x => x.Email, y => y.Customer.Email, (x, y) => new { Name = x.Name, Email = x.Email, Date = y.Date }).GroupBy(x => x.Email).Select(x => new ListItem() { Name = x.FirstOrDefault().Name, Count = x.Count(), Date = x.OrderByDescending(y => y.Date).FirstOrDefault().Date }).ToList();
+                //List = context.CustomerSet.Join(context.OrderSet, x => x.Email, y => y.Customer.Email, (x, y) => new { Name = x.Name, Email = x.Email, Date = y.Date }).GroupBy(x => x.Email).Select(x => new ListItem() { Name = x.FirstOrDefault().Name, Count = x.Count(), Date = x.OrderByDescending(y => y.Date).FirstOrDefault().Date }).OrderByDescending(x => x.Date).ToList();
 
                 //2 вариант
                 List = context.CustomerSet.Join(context.OrderSet, x => x.Email, y => y.Customer.Email, (x, y) => new { Name = x.Name, Email = x.Email, Date = y.Date, Id = y.Id })
